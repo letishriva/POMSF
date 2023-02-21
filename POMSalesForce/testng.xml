@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Sales Force">
+	
+	<listeners>
+        <listener class-name="pomSalesForce.utility.testNGListenersSF"/>
+    </listeners>
+        
+	<test  thread-count="1" name="5 login Test cases">
+		<parameter name="URL" value="https://login.salesforce.com/"></parameter>
+		<parameter name="UID" value="***"></parameter>
+		<parameter name="PASS" value="***"></parameter>
+		 <classes>
+		 	<class name="pomSalesForce.tests.LoginTests" /> 	 	
+		 </classes>
+	</test>
+</suite>
+
