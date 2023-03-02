@@ -32,7 +32,7 @@ public class testNGListenersSF implements ITestListener {
 	    String path;
 	    
 		try {
-			path = BaseAction.getScreenShotOfThePage();
+			path = BaseAction.getScreenShotOfThePage(driver);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			path = null;

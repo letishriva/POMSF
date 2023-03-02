@@ -19,21 +19,19 @@ import java.util.Map;
 import org.apache.logging.log4j.Logger;
 
 
-public class LoginTests extends ReadPropertyFile {//extends BasePage{
-	
+public class LoginTests extends BaseAction {
+	  public LoginTests() {
+		    super(); // we will call the constructor for BaseAction
+		  }
 
 	@Test
 	public void tc1loginErrorMessage() throws Exception  {
-	
-//		logger.info("inside TC1 Login Error Message");
+		logger.info("inside TC1 Login Error Message");
 		Map<String, String> propFileKeyValue; // = mapWithKeyValue;
 		propFileKeyValue = ReadPropertyFile.getValuesFromPropertyFile();
-		
-		WebDriver driver;		
-		WebDriverManager.chromedriver().setup();
-		driver=new ChromeDriver();
-		driver.manage().window().maximize();
 		driver.get(propFileKeyValue.get("url"));
+	//	BaseAction base = BaseAction.getInstance();
+	//	WebDriver driver = base.getDriver();
 		LoginPage loginpage = new LoginPage(driver);
 		loginpage.enterUsername(propFileKeyValue.get("invaliduserid"));// we enter User@gmail.com
 		loginpage.clearPassword();// we enter clear password 
@@ -46,19 +44,17 @@ public class LoginTests extends ReadPropertyFile {//extends BasePage{
 		} else {
 			System.out.println("Error Message non displayed - script failed");
 		}
+		logger.info("Error message is displayed - script passed");
 	}
 		
 	@Test
 	public void tc2loginToSalesForce() throws Exception  {
 		Map<String, String> propFileKeyValue; // = mapWithKeyValue;
 		propFileKeyValue = ReadPropertyFile.getValuesFromPropertyFile();
-//		logger.info("inside TC2 Login To SalesForce");
-		WebDriver driver;		
-		WebDriverManager.chromedriver().setup();
-		driver=new ChromeDriver();
-		driver.manage().window().maximize();
+		logger.info("inside TC2 Login To SalesForce");
 		driver.get(propFileKeyValue.get("url"));
 		LoginPage loginpage = new LoginPage(driver);
+
 		loginpage.enterUsername(propFileKeyValue.get("userid"));
 		loginpage.enterPassword(propFileKeyValue.get("password"));
 		loginpage.clickLogin();
@@ -72,19 +68,17 @@ public class LoginTests extends ReadPropertyFile {//extends BasePage{
 	
 	@Test
 	public static void tc3checkRememberMe () throws Exception {
-//		logger.info("inside TC3 Check RememberMe");
+		logger.info("inside TC3 Check RememberMe");
 		Map<String, String> propFileKeyValue; // = mapWithKeyValue;
 		propFileKeyValue = ReadPropertyFile.getValuesFromPropertyFile();
-		WebDriver driver;		
-		WebDriverManager.chromedriver().setup();
-		driver=new ChromeDriver();
-		driver.manage().window().maximize();
 		driver.get(propFileKeyValue.get("url"));
 		LoginPage loginpage = new LoginPage(driver);
+		
 		loginpage.enterUsername(propFileKeyValue.get("userid"));
 		loginpage.enterPassword(propFileKeyValue.get("password"));
 		loginpage.clickLogin();
 		Thread.sleep(4000);
+		
 		String expected = "Home Page ~ Salesforce - Developer Edition";
 		HomePage homepage = new HomePage(driver);
 		String actual = homepage.getHomePageTitle(driver);
@@ -106,13 +100,9 @@ public class LoginTests extends ReadPropertyFile {//extends BasePage{
 	
 	@Test
 	public static void tc4aForgotPassword() throws Throwable {
-//		logger.info("inside TC4A Forgot Password");
+		logger.info("inside TC4A Forgot Password");
 		Map<String, String> propFileKeyValue; // = mapWithKeyValue;
 		propFileKeyValue = ReadPropertyFile.getValuesFromPropertyFile();
-		WebDriver driver;		
-		WebDriverManager.chromedriver().setup();
-		driver=new ChromeDriver();
-		driver.manage().window().maximize();
 		driver.get(propFileKeyValue.get("url"));
 		LoginPage loginpage = new LoginPage(driver);
 		loginpage.clickForgotPassword();
@@ -144,7 +134,7 @@ public class LoginTests extends ReadPropertyFile {//extends BasePage{
 	}
 	@Test
 	public void tc4bForgotPassword() throws Exception  {
-//		logger.info("inside TC4B Forgot Password");
+		logger.info("inside TC4B Forgot Password");
 		// we provive wrong username and password
 		Map<String, String> propFileKeyValue; // = mapWithKeyValue;
 		propFileKeyValue = ReadPropertyFile.getValuesFromPropertyFile();
@@ -154,6 +144,7 @@ public class LoginTests extends ReadPropertyFile {//extends BasePage{
 		driver.manage().window().maximize();
 		driver.get(propFileKeyValue.get("url"));
 		LoginPage loginpage = new LoginPage(driver);
+		
 		loginpage.enterUsername(propFileKeyValue.get("invaliduserid"));// we enter incorrect username 
 		loginpage.enterPassword(propFileKeyValue.get("invalidpassword"));// we enter incorrect password
 		loginpage.clickLogin();

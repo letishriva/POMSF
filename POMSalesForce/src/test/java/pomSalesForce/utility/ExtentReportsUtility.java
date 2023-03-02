@@ -8,18 +8,12 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-
 public class ExtentReportsUtility {
 	public static ExtentReports report;
 	public static ExtentSparkReporter spartReporter;
-	public static ExtentTest testLogger;
+	public static ExtentTest logger;
 	private static ExtentReportsUtility extentObject;
 	
-		
-	public ExtentReportsUtility() {
-
-				
-	}
 	
 	public static ExtentReportsUtility getInstance() {
 		if(extentObject==null) { 
@@ -30,12 +24,12 @@ public class ExtentReportsUtility {
 	}
 	
 	public void startExtentReport() {
-		
 		spartReporter=new ExtentSparkReporter(Constants.SPARKS_HTML_REPORT_PATH);
-		
 		report=new ExtentReports();
-		report.attachReporter(spartReporter);
+
 		
+		report.attachReporter(spartReporter);
+		report.attachReporter(spartReporter);
 		report.setSystemInfo("Host Name", "SalesForce");
 		report.setSystemInfo("Environment", "Automation Testing");
 		report.setSystemInfo("User Name", "Leti");
@@ -45,26 +39,27 @@ public class ExtentReportsUtility {
 		spartReporter.config().setTheme(Theme.STANDARD);
 	}
 	
+	
 	public void startSingleTestReport(String testScript_Name) {
-		testLogger=report.createTest(testScript_Name);
+		logger=report.createTest(testScript_Name);
 	}
 	
 	public void logTestInfo(String text) {
-		testLogger.info(text);
+		logger.info(" info from logger regarding Test " + text);
 	}
 	public void logTestpassed(String testcaseName) {
-		testLogger.pass(MarkupHelper.createLabel(testcaseName + "is passTest", ExtentColor.GREEN));
+		logger.pass(MarkupHelper.createLabel(testcaseName + "is passTest", ExtentColor.GREEN));
 	}
 	
 	public void logTestFailed(String testcaseName) {
-		testLogger.fail(MarkupHelper.createLabel(testcaseName + "is failed", ExtentColor.RED));
+		logger.fail(MarkupHelper.createLabel(testcaseName + "is failed", ExtentColor.RED));
 	}
 	
 	public void logTestFailedWithException(Exception e) {
-		testLogger.log(Status.FAIL,e);
+		logger.log(Status.FAIL,e);
 		}
 	public void logTestScreenshot(String path) {
-		testLogger.addScreenCaptureFromPath(path);
+		logger.addScreenCaptureFromPath(path);
 		}
 	public void endReport() {
 		report.flush();
