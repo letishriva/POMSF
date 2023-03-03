@@ -45,7 +45,6 @@ public class LoginTests extends BaseAction {
 			System.out.println("Error Message non displayed - script failed");
 		}
 		logger.info("Error message is displayed - script passed");
-		driver.get(propFileKeyValue.get("url"));
 	}
 		
 	@Test
