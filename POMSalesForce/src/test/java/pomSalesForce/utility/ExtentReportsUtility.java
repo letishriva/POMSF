@@ -8,12 +8,16 @@ import com.aventstack.extentreports.markuputils.MarkupHelper;
 import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 import com.aventstack.extentreports.reporter.configuration.Theme;
 
-public class ExtentReportsUtility {
+import pomSalesForce.base.BaseAction;
+
+public class ExtentReportsUtility extends BaseAction {
 	public static ExtentReports report;
 	public static ExtentSparkReporter spartReporter;
 	public static ExtentTest logger;
 	private static ExtentReportsUtility extentObject;
-	
+	  public ExtentReportsUtility() { //
+		    super(); // we will call the constructor for BaseAction
+		  }//
 	
 	public static ExtentReportsUtility getInstance() {
 		if(extentObject==null) { 

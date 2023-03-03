@@ -7,9 +7,7 @@
     </listeners>
         
 	<test  thread-count="1" name="5 login Test cases">
-		<parameter name="URL" value="https://login.salesforce.com/"></parameter>
-		<parameter name="UID" value="***"></parameter>
-		<parameter name="PASS" value="***"></parameter>
+		<parameter name="url" value="https://login.salesforce.com/"></parameter>
 		 <classes>
 		 	<class name="pomSalesForce.tests.LoginTests" /> 	 	
 		 </classes>

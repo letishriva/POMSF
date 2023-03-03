@@ -8,9 +8,14 @@ import org.testng.ITestResult;
 import pomSalesForce.base.BaseAction;
 
 
-public class testNGListenersSF implements ITestListener {
+public class testNGListenersSF extends BaseAction implements ITestListener {
 	protected static ExtentReportsUtility extentreport=null;
-	protected WebDriver driver;
+	
+	  public testNGListenersSF() {//
+		    super(); // we will call the constructor for BaseAction
+		  }//
+	
+//	protected static WebDriver driver;
 	
 	@Override
 	public void onTestStart(ITestResult Result) {

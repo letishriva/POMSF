@@ -36,7 +36,7 @@ public class BaseAction {
 	public static ExtentReportsUtility extentreport = null;
 	protected static WebDriver driver; // we have to create a singleton = only one instance of BaseAction for the same Driver throughout
 //ds	public static GenerateReports report= null;
-	protected static WebDriver instance;
+//	protected static WebDriver instance; // TO BE CORRECTED - 2 INSTANCES OF DRIVER
 	
 	
 // Singleton 
@@ -50,10 +50,10 @@ public class BaseAction {
 	
 	protected static BaseAction getInstance() {
 		
-		if(instance == null) {
-		instance = (WebDriver) new BaseAction();
+		if(driver == null) {
+		driver = (WebDriver) new BaseAction();
 		}
-		return (BaseAction) instance;
+		return (BaseAction) driver;
 	}
 	
 
